@@ -1,31 +1,68 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+
 import Video from 'react-native-video';
 
+ 
+
 const App = () => {
-  const [isPlaying, setIsPlaying] = useState(true);
+
+  const [isPlaying, setIsPlaying] = useState(false);
+
+ 
 
   const togglePlayPause = () => {
+
     setIsPlaying(!isPlaying);
+
   };
 
+ 
+
   return (
+
     <View style={styles.container}>
+
+      {/* Background Video */}
+
       <Video
-        source={{ uri: 'https://www.w3schools.com/html/mov_bbb.mp4' }}
-        style={styles.video}
+
+source={{ uri: 'https://www.w3schools.com/html/mov_bbb.mp4' }}
+
+style={styles.video}
+
         resizeMode="cover"
-        repeat={true}
+
+        repeat={false}
+
         paused={!isPlaying}
+
+        onTouchStart={togglePlayPause}
+
       />
-      <TouchableOpacity style={styles.playPauseButton} onPress={togglePlayPause}>
-        <Text style={styles.playPauseButtonText}>{isPlaying ? '▶️' : '⏸️'}</Text>
-      </TouchableOpacity>
+
+ 
+
+      {/* Play/Pause Button */}
+
+      {isPlaying ? null : (
+
+        <TouchableOpacity style={styles.playButton} onPress={togglePlayPause}>
+
+          <Text style={styles.playButtonText}>▶️</Text>
+
+        </TouchableOpacity>
+
+      )}
 
       {/* Video Details */}
 
-      <View style={styles.videoDetails}>
-        <Text style={styles.videoDescription}>Description:Lorem ipsum dolor sit amet, consectetur adipiscing collaborative online encyclopedias</Text>
+      <View style={styles.container}>
+      <Text style={styles.videoDescription}>Urek the Road Not Taken:</Text>
+      <Text style={styles.videoDescriptions}>5 Himalayan Treks to</Text>
+      <Text style={styles.videoDescription}>Unleash the Adventure in</Text>
+      <Text style={styles.videoDescriptionss}>You This Summer</Text>
       </View>
 
       {/* Cut Button */}
@@ -34,51 +71,88 @@ const App = () => {
       > 
       <Text style={styles.cutButtonText}>❌</Text></TouchableOpacity>
 
-
-
     </View>
-    
+
   );
+
 };
 
+ 
+
 const styles = StyleSheet.create({
+
   container: {
+
     flex: 1,
+
     justifyContent: 'center',
+
     alignItems: 'center',
+
   },
+
   video: {
+
     position: 'absolute',
+
     top: 0,
+
     left: 0,
+
     bottom: 0,
+
     right: 0,
+
   },
-  playPauseButton: {
+
+  playButton: {
+
     position: 'absolute',
-    bottom: 300,
-    right: 125,
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+
+    alignSelf: 'center',
+
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+
+    padding: 20,
+
     borderRadius: 50,
-    padding: 10,
+
   },
-  playPauseButtonText: {
-    fontSize: 40,
+
+  playButtonText: {
+
     color: 'white',
+
+    fontSize: 24,
+
   },
   videoDescription: {
 
-    color: '#fff',
-
-    fontSize: 20,
-
-    width: 320,
-
-    height: 350,
-
-    top: 390,
+    color: '#FFFFFF',
+   
+    fontWeight: 'bold',
     
-  
+    top: 250,
+    fontSize:28,
+    
+  },
+  videoDescriptions: {
+
+    color: '#FFFFFF',
+   
+    fontWeight: 'bold',
+    paddingRight:53,
+    top: 250,
+    fontSize:28,
+  },
+  videoDescriptionss: {
+
+    color: '#FFFFFF',
+   
+    fontWeight: 'bold',
+    paddingRight:87,
+    top: 250,
+    fontSize:28,
   },
 
 cutButton: {
@@ -96,5 +170,7 @@ cutButtonText: {
 },
 
 });
+
+ 
 
 export default App;
