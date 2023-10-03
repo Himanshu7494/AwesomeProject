@@ -1,132 +1,100 @@
-import React from 'react';
-
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-
+import React, { useState } from 'react';
+import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import Video from 'react-native-video';
 
 const App = () => {
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const togglePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
 
   return (
-
     <View style={styles.container}>
-
-      { /*Video */}
-
-      { <Video onLoad={(data)=>console.log(data)} source={{ uri: './assets/video.mp4' }} controls={true} /> }
-
-      { /*Play Button*/ }
-
-      <TouchableOpacity style={styles.playButton}>
-
-        <Text style={styles.playButtonText}>Play</Text>
-
+      <Video
+        source={{ uri: 'https://www.w3schools.com/html/mov_bbb.mp4' }}
+        style={styles.video}
+        resizeMode="cover"
+        repeat={true}
+        paused={!isPlaying}
+      />
+      <TouchableOpacity style={styles.playPauseButton} onPress={togglePlayPause}>
+        <Text style={styles.playPauseButtonText}>{isPlaying ? '▶️' : '⏸️'}</Text>
       </TouchableOpacity>
 
       {/* Video Details */}
 
       <View style={styles.videoDetails}>
-
-        <Text style={styles.videoTitle}></Text>
-
-        <Text style={styles.videoDescription}>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
-
-        <Text style={styles.uploadedByText}></Text>
-
+        <Text style={styles.videoDescription}>Description:Lorem ipsum dolor sit amet, consectetur adipiscing collaborative online encyclopedias</Text>
       </View>
 
+      {/* Cut Button */}
+      <TouchableOpacity
+      style={styles.cutButton}
+      > 
+      <Text style={styles.cutButtonText}>❌</Text></TouchableOpacity>
+
+
+
     </View>
-
+    
   );
-
 };
 
-
-
 const styles = StyleSheet.create({
-
   container: {
-
     flex: 1,
-
-    backgroundColor: '#000',
-
     justifyContent: 'center',
-
     alignItems: 'center',
-
   },
-
   video: {
-
-    width: '100%',
-
-    height: '60%',
-
-  },
-
-  playButton: {
-
     position: 'absolute',
-
-    backgroundColor: '#3498db',
-
-    padding: 15,
-
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+  playPauseButton: {
+    position: 'absolute',
+    bottom: 300,
+    right: 125,
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
     borderRadius: 50,
-
-    zIndex: 1,
-
+    padding: 10,
   },
-
-  playButtonText: {
-
-    color: '#fff',
-
-    fontWeight: 'bold',
-
+  playPauseButtonText: {
+    fontSize: 40,
+    color: 'white',
   },
-
-  videoDetails: {
-
-    width: '100%',
-
-    padding: 20,
-
-    backgroundColor: '#333',
-
-  },
-
-  videoTitle: {
-
-    color: '#fff',
-
-    fontSize: 24,
-
-    fontWeight: 'bold',
-
-  },
-
   videoDescription: {
 
     color: '#fff',
 
-    width: 360,
+    fontSize: 20,
 
-    height: 357,
+    width: 320,
 
-    top: 443,
+    height: 350,
 
-
+    top: 390,
+    
+  
   },
 
-  uploadedByText: {
+cutButton: {
+  position: 'absolute',
+  top: 20,
+  right: 20,
+  backgroundColor: 'skyblue',
+  padding: 10,
+  borderRadius: 5,
+},
 
-    color: '#fff',
-
-  },
+cutButtonText: {
+  color: 'white',
+  fontWeight: 'bold',
+},
 
 });
-
-
 
 export default App;
