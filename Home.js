@@ -9,6 +9,7 @@ const Home = () => {
   const navigateToVideo = () => {
     // Navigate to the Video screen when the button is pressed
     navigation.navigate('VideoScreen');
+   
   };
 
   return (
@@ -32,3 +33,4 @@ const styles = StyleSheet.create({
 });
 
 export default Home;
+

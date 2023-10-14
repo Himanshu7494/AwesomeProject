@@ -25,6 +25,11 @@ const VideoScreen = () => {
     navigation.navigate('Home');
   };
 
+  const handleVideoEnd = () => {
+    // Video has ended , show the play button
+    setIsPlaying(false);
+  };
+
  
 
   return (
@@ -46,6 +51,8 @@ style={styles.video}
         paused={!isPlaying}
 
         onTouchStart={togglePlayPause}
+
+        onEnd={handleVideoEnd}
 
       />
 
@@ -77,7 +84,7 @@ style={styles.video}
 
       {/* Cut Button (Top-right corner) */}
       <TouchableOpacity style={styles.cutButton} onPress={handleCut}>
-        <Text style={styles.cutButtonText}>Cut</Text>
+        <Text style={styles.cutButtonText}>❌</Text>
       </TouchableOpacity>
 
     </View>
@@ -85,7 +92,6 @@ style={styles.video}
   );
 
 };
-
  
 
 const styles = StyleSheet.create({

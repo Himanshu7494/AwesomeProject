@@ -9,9 +9,9 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="VideoScreen">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="VideoScreen" component={VideoScreen} />
+        <Stack.Screen name="VideoScreen" component={VideoScreen} options={{ headerShown: false }}/>
         
       </Stack.Navigator>
     </NavigationContainer>
